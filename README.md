@@ -8,6 +8,8 @@ A simple full-stack fitness tracker app that allows users to register, log in, a
 
 ## 📱 Frontend
 
+</br>
+
 -   Flutter(Dart)
 
 -   Simple and responsive UI
@@ -16,7 +18,11 @@ A simple full-stack fitness tracker app that allows users to register, log in, a
 
 -   Displays fitness data from backend(Workouts, Meals, Habit)
 
+</br>
+
 ## 🛠️ Backend
+
+</br>
 
 -   Go with Gin framework
 
@@ -26,13 +32,21 @@ A simple full-stack fitness tracker app that allows users to register, log in, a
 
 -   Secure authentication using JWT
 
+</br>
+
 ## 🗄️ Database
+
+</br>
 
 -   PostgreSQL
 
 -   Stores users, workouts, meals and habit
 
+</br>
+
 ## 🔐 Authentication
+
+</br>
 
 -   JWT-based auth
 
