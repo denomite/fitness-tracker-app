@@ -42,50 +42,166 @@ class _RegisterPageState extends State<RegisterPage> {
     }
   }
 
+  //   @override
+  //   Widget build(BuildContext context) {
+  //     return Scaffold(
+  //       appBar: AppBar(title: const Text('Register')),
+  //       body: Padding(
+  //         padding: const EdgeInsets.all(16.0),
+  //         child: Form(
+  //           key: _formKey,
+  //           child: Column(
+  //             children: [
+  //               TextFormField(
+  //                 decoration: const InputDecoration(labelText: 'Username'),
+  //                 onChanged: (value) => setState(() => _username = value),
+  //                 validator:
+  //                     (value) =>
+  //                         value!.isEmpty ? 'Please enter your username' : null,
+  //               ),
+  //               TextFormField(
+  //                 decoration: const InputDecoration(labelText: 'Email'),
+  //                 onChanged: (value) => setState(() => _email = value),
+  //                 validator: (value) {
+  //                   if (value!.isEmpty ||
+  //                       !RegExp(r'\S+@\S+\.\S+').hasMatch(value)) {
+  //                     return 'Please enter a valid email';
+  //                   }
+  //                   return null;
+  //                 },
+  //               ),
+  //               TextFormField(
+  //                 decoration: const InputDecoration(labelText: 'Password'),
+  //                 obscureText: true,
+  //                 onChanged: (value) => setState(() => _password = value),
+  //                 validator:
+  //                     (value) =>
+  //                         value!.isEmpty ? 'Please enter a password' : null,
+  //               ),
+  //               const SizedBox(height: 20),
+  //               ElevatedButton(
+  //                 onPressed: () {
+  //                   if (_formKey.currentState!.validate()) {
+  //                     registerUser();
+  //                   }
+  //                 },
+  //                 child: const Text('Register'),
+  //               ),
+  //             ],
+  //           ),
+  //         ),
+  //       ),
+  //     );
+  //   }
+  // }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Register')),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Form(
-          key: _formKey,
+      backgroundColor: Colors.grey[100],
+      appBar: AppBar(
+        title: const Text('Register'),
+        backgroundColor: Colors.deepPurple,
+        foregroundColor: Colors.white,
+      ),
+      body: Center(
+        child: SingleChildScrollView(
+          padding: const EdgeInsets.all(24.0),
           child: Column(
             children: [
-              TextFormField(
-                decoration: const InputDecoration(labelText: 'Username'),
-                onChanged: (value) => setState(() => _username = value),
-                validator:
-                    (value) =>
-                        value!.isEmpty ? 'Please enter your username' : null,
-              ),
-              TextFormField(
-                decoration: const InputDecoration(labelText: 'Email'),
-                onChanged: (value) => setState(() => _email = value),
-                validator: (value) {
-                  if (value!.isEmpty ||
-                      !RegExp(r'\S+@\S+\.\S+').hasMatch(value)) {
-                    return 'Please enter a valid email';
-                  }
-                  return null;
-                },
-              ),
-              TextFormField(
-                decoration: const InputDecoration(labelText: 'Password'),
-                obscureText: true,
-                onChanged: (value) => setState(() => _password = value),
-                validator:
-                    (value) =>
-                        value!.isEmpty ? 'Please enter a password' : null,
+              const SizedBox(height: 60),
+              const Icon(
+                Icons.person_add_alt_1,
+                size: 80,
+                color: Colors.deepPurple,
               ),
               const SizedBox(height: 20),
-              ElevatedButton(
-                onPressed: () {
-                  if (_formKey.currentState!.validate()) {
-                    registerUser();
-                  }
-                },
-                child: const Text('Register'),
+              const Text(
+                "Create Your Account",
+                style: TextStyle(
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.deepPurple,
+                ),
+              ),
+              const SizedBox(height: 40),
+              Form(
+                key: _formKey,
+                child: Column(
+                  children: [
+                    TextFormField(
+                      decoration: const InputDecoration(
+                        labelText: 'Username',
+                        border: OutlineInputBorder(),
+                        prefixIcon: Icon(Icons.person),
+                      ),
+                      onChanged: (value) => setState(() => _username = value),
+                      validator:
+                          (value) =>
+                              value!.isEmpty
+                                  ? 'Please enter your username'
+                                  : null,
+                    ),
+                    const SizedBox(height: 20),
+                    TextFormField(
+                      decoration: const InputDecoration(
+                        labelText: 'Email',
+                        border: OutlineInputBorder(),
+                        prefixIcon: Icon(Icons.email),
+                      ),
+                      onChanged: (value) => setState(() => _email = value),
+                      validator: (value) {
+                        if (value!.isEmpty ||
+                            !RegExp(r'\S+@\S+\.\S+').hasMatch(value)) {
+                          return 'Please enter a valid email';
+                        }
+                        return null;
+                      },
+                    ),
+                    const SizedBox(height: 20),
+                    TextFormField(
+                      decoration: const InputDecoration(
+                        labelText: 'Password',
+                        border: OutlineInputBorder(),
+                        prefixIcon: Icon(Icons.lock),
+                      ),
+                      obscureText: true,
+                      onChanged: (value) => setState(() => _password = value),
+                      validator:
+                          (value) =>
+                              value!.isEmpty ? 'Please enter a password' : null,
+                    ),
+                    const SizedBox(height: 30),
+                    SizedBox(
+                      width: double.infinity,
+                      child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.deepPurple,
+                          foregroundColor: Colors.white,
+                          minimumSize: const Size(200, 50),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                          elevation: 5,
+                          shadowColor: Colors.black54,
+                        ),
+                        onPressed: () {
+                          if (_formKey.currentState!.validate()) {
+                            registerUser();
+                          }
+                        },
+                        child: const Text(
+                          'Register',
+                          style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                            letterSpacing: 1.0,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ],
           ),

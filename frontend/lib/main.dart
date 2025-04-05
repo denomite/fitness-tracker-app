@@ -2,8 +2,16 @@ import 'package:flutter/material.dart';
 import 'screens/home_screen.dart';
 import 'screens/login_page.dart';
 import 'screens/register_page.dart';
+import 'package:device_preview/device_preview.dart';
 
-void main() => runApp(const MyApp());
+void main() {
+  runApp(
+    DevicePreview(
+      enabled: true, // set to false to disable
+      builder: (context) => const MyApp(),
+    ),
+  );
+}
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -11,12 +19,13 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      builder: DevicePreview.appBuilder,
       title: 'Fitness Tracker',
       debugShowCheckedModeBanner: false,
       initialRoute: '/',
       routes: {
         '/': (context) => const HomeScreen(),
-        '/login': (context) => const LoginPage(),
+        '/login': (context) => const LoginScreen(),
         '/register': (context) => const RegisterPage(),
       },
     );
