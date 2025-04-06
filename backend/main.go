@@ -7,6 +7,7 @@ import (
 	"fmt"
 	"log"
 
+	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 )
 
@@ -17,6 +18,8 @@ func main() {
 	database.ConnectDatabase()
 
 	r := gin.Default()
+
+	r.Use(cors.Default())
 
 	routes.RegisterRoutes(r)
 
