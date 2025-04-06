@@ -78,148 +78,112 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
-    print('Building LoginScreen'); // Track rebuilds
     return Scaffold(
-      appBar: AppBar(title: const Text('Login')),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Form(
-          key: _formKey,
-          child: Column(
-            children: [
-              TextFormField(
-                decoration: const InputDecoration(labelText: 'Email'),
-                validator:
-                    (value) => value!.isEmpty ? 'Email is required' : null,
-                onChanged: (value) {
-                  setState(() {
-                    _email = value; // Update state on change
-                  });
-                },
-                initialValue: _email, // Preserve value on rebuild
+      backgroundColor: Colors.grey[100], // Background color from second code
+      appBar: AppBar(
+        title: const Text("Login"),
+        backgroundColor: Colors.deepPurple, // AppBar color from second code
+        foregroundColor: Colors.white,
+      ),
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.all(24.0),
+        child: Column(
+          children: [
+            const SizedBox(height: 60),
+            const Icon(
+              Icons.lock_open,
+              size: 80,
+              color: Colors.deepPurple,
+            ), // Icon from second code
+            const SizedBox(height: 20),
+            const Text(
+              "Welcome Back!",
+              style: TextStyle(
+                fontSize: 24,
+                fontWeight: FontWeight.bold,
+                color: Colors.deepPurple,
               ),
-              TextFormField(
-                decoration: const InputDecoration(labelText: 'Password'),
-                obscureText: true,
-                validator:
-                    (value) => value!.isEmpty ? 'Password is required' : null,
-                onChanged: (value) {
-                  setState(() {
-                    _password = value; // Update state on change
-                  });
-                },
-                initialValue: _password, // Preserve value on rebuild
+            ),
+            const SizedBox(height: 40),
+            Form(
+              key: _formKey,
+              child: Column(
+                children: [
+                  TextFormField(
+                    decoration: const InputDecoration(
+                      labelText: 'Email',
+                      border: OutlineInputBorder(),
+                      prefixIcon: Icon(Icons.email),
+                    ),
+                    validator:
+                        (value) => value!.isEmpty ? 'Email is required' : null,
+                    onChanged: (value) {
+                      setState(() {
+                        _email = value; // Update state on change
+                      });
+                    },
+                    initialValue: _email, // Preserve value on rebuild
+                  ),
+                  const SizedBox(height: 20),
+                  TextFormField(
+                    decoration: const InputDecoration(
+                      labelText: 'Password',
+                      border: OutlineInputBorder(),
+                      prefixIcon: Icon(Icons.lock),
+                    ),
+                    obscureText: true,
+                    validator:
+                        (value) =>
+                            value!.isEmpty ? 'Password is required' : null,
+                    onChanged: (value) {
+                      setState(() {
+                        _password = value; // Update state on change
+                      });
+                    },
+                    initialValue: _password, // Preserve value on rebuild
+                  ),
+                  const SizedBox(height: 30),
+                  SizedBox(
+                    width: double.infinity,
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.deepPurple, // Button color
+                        foregroundColor: Colors.white, // Text color
+                        minimumSize: const Size(200, 50), // Button size
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                        elevation: 5,
+                        shadowColor: Colors.black54,
+                      ),
+                      onPressed:
+                          _isLoading
+                              ? null // Disable button when loading
+                              : () {
+                                if (_formKey.currentState!.validate()) {
+                                  print('Button pressed, calling loginUser');
+                                  loginUser(); // Call the login function
+                                }
+                              },
+                      child:
+                          _isLoading
+                              ? const CircularProgressIndicator()
+                              : const Text(
+                                "Login",
+                                style: TextStyle(
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.bold,
+                                  letterSpacing: 1.0,
+                                ),
+                              ),
+                    ),
+                  ),
+                ],
               ),
-              const SizedBox(height: 20),
-              ElevatedButton(
-                onPressed:
-                    _isLoading
-                        ? null
-                        : () {
-                          print(
-                            'Button pressed, calling loginUser',
-                          ); // Confirm press
-                          loginUser();
-                        },
-                child:
-                    _isLoading
-                        ? const CircularProgressIndicator()
-                        : const Text('Login'),
-              ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
   }
 }
-
-  // @override
-  // Widget build(BuildContext context) {
-  //   return Scaffold(
-  //     backgroundColor: Colors.grey[100],
-  //     appBar: AppBar(
-  //       title: const Text("Login"),
-  //       backgroundColor: Colors.deepPurple,
-  //       foregroundColor: Colors.white,
-  //     ),
-  //     body: SingleChildScrollView(
-  //       padding: const EdgeInsets.all(24.0),
-  //       child: Column(
-  //         children: [
-  //           const SizedBox(height: 60),
-  //           const Icon(Icons.lock_open, size: 80, color: Colors.deepPurple),
-  //           const SizedBox(height: 20),
-  //           const Text(
-  //             "Welcome Back!",
-  //             style: TextStyle(
-  //               fontSize: 24,
-  //               fontWeight: FontWeight.bold,
-  //               color: Colors.deepPurple,
-  //             ),
-  //           ),
-  //           const SizedBox(height: 40),
-  //           Form(
-  //             key: _formKey,
-  //             child: Column(
-  //               children: [
-  //                 TextFormField(
-  //                   decoration: const InputDecoration(
-  //                     labelText: 'Email',
-  //                     border: OutlineInputBorder(),
-  //                     prefixIcon: Icon(Icons.email),
-  //                   ),
-  //                   onChanged: (value) => setState(() => _email = value),
-  //                   validator:
-  //                       (value) =>
-  //                           value!.isEmpty ? 'Please enter your email' : null,
-  //                 ),
-  //                 const SizedBox(height: 20),
-  //                 TextFormField(
-  //                   decoration: const InputDecoration(
-  //                     labelText: 'Password',
-  //                     border: OutlineInputBorder(),
-  //                     prefixIcon: Icon(Icons.lock),
-  //                   ),
-  //                   obscureText: true,
-  //                   onChanged: (value) => setState(() => _password = value),
-  //                   validator:
-  //                       (value) =>
-  //                           value!.isEmpty
-  //                               ? 'Please enter your password'
-  //                               : null,
-  //                 ),
-  //                 const SizedBox(height: 30),
-  //                 SizedBox(
-  //                   width: double.infinity,
-  //                   child: ElevatedButton(
-  //                     style: ElevatedButton.styleFrom(
-  //                       backgroundColor: Colors.deepPurple, // Vibrant color
-  //                       foregroundColor: Colors.white, // Text color
-  //                       minimumSize: const Size(200, 50), // Size of the button
-  //                       shape: RoundedRectangleBorder(
-  //                         borderRadius: BorderRadius.circular(12),
-  //                       ),
-  //                       elevation: 5,
-  //                       shadowColor: Colors.black54,
-  //                     ),
-  //                     onPressed: () => Navigator.pushNamed(context, '/login'),
-  //                     child: const Text(
-  //                       "Login",
-  //                       style: TextStyle(
-  //                         fontSize: 18,
-  //                         fontWeight: FontWeight.bold,
-  //                         letterSpacing: 1.0,
-  //                       ),
-  //                     ),
-  //                   ),
-  //                 ),
-  //               ],
-  //             ),
-  //           ),
-  //         ],
-  //       ),
-  //     ),
-  //   );
-  // }
-
