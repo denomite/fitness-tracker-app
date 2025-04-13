@@ -51,3 +51,8 @@ A simple full-stack fitness tracker app that allows users to register, log in, a
 -   JWT-based auth
 
 -   Secure login and protected routes for accessing user-specific data
+
+
+
+https://github.com/user-attachments/assets/26458ae8-ae81-49d1-a0bd-ea412d71b8f6
+
