@@ -54,7 +54,7 @@ A simple full-stack fitness tracker app that allows users to register, log in, a
 
 </br>
 
-## Video Preview: Fitness Tracker App Demo
+## 📽️ Video Preview: Fitness Tracker App Demo
 
 </br>
 
